@@ -1,1 +1,0 @@
-# b2-delivery-optimizer
