@@ -16,11 +16,7 @@ Deterministic Parse CSV to JSON
    ↓
 Convert addresses to their own additional latitude and longitude columns
    ↓
-Schema Validation (verifying that incoming data matches the structure and rules your system expects BEFORE your code uses it) (Check shopify csvs and other small business csv resources to code this part)
-   <!-- ↓ -->
-<!-- LLM Normalization Layer to fill in for ambiguous JSON -->
-   <!-- ↓
-Schema Validation (verifying that incoming data matches the structure and rules your system expects BEFORE your code uses it) Check after LLM -->
+Schema Validation (verifying and converting incoming data to the structures and rules that our system expects BEFORE our code uses it) (Check shopify csvs and other small business csv resources to code this part) (use library like Zod)
    ↓
 User Edit Page and Confirmation
    ↓
@@ -29,9 +25,6 @@ Pre-Solver Feasibility Engine
 Build Solver Payload
    ↓
 Send POST → OSRM/VROOM
-
-<!-- Domain validation maybe later -->
-
 
 # Base File Structure
 src/
@@ -57,7 +50,6 @@ src/
 │   # Connects to external services.
 │   # Examples:
 │   # - CSV parser
-│   # - LLM client
 │   # - OSRM/VROOM client
 │   # If a third-party service changes,
 │   # only this folder should need updates.
@@ -80,7 +72,6 @@ src/
 # Simple Understanding
 app → receives  
 application → directs  
-domain → decides  
 infrastructure → communicates  
 contracts → protects  
 config → controls  
@@ -111,15 +102,7 @@ src/
 │   │ # Converts uploaded CSV → structured JSON.
 │   #
 │   ├ validation/
-│   │     zodSchemaValidation.ts
-<!-- │   │     domainValidation.ts -->
-│   │
-│   │ # Runs early safety checks before data reaches the domain.
-│   #
-<!-- │   ├ normalization/ -->
-<!-- │   │     llmNormalization.ts -->
-│   │
-│   │ # Uses LLM ONLY for ambiguous data.
+│   │     schemaValidation.ts│
 │   #
 │   ├ feasibility/
 │   │     runFeasibility.ts
@@ -148,13 +131,11 @@ src/
 │   # Prevent invalid states.
 │
 │   ├ services/
-│   │     DomainValidator.ts
 │   │     FeasibilityEngine.ts
 │   │
 │   │ # Pure logistics rules.
 │   #
 │   └ errors/
-│         DomainError.ts
 │         ValidationError.ts
 │         FeasibilityError.ts
 │
@@ -165,12 +146,7 @@ src/
 │   │     CSVParser.ts
 │   │
 │   │ # Wraps CSV library.
-│
-<!-- │   ├ llm/
-│   │     LLMClient.ts -->
-│   │
-│   │ # Safe wrapper around AI provider.
-│
+|   |
 │   ├ solver/
 │   │     VroomClient.ts
 │   │
@@ -204,9 +180,14 @@ src/
 │   # Central configuration.
 │
 └ lib/   
-    ├ logger.ts  
-    <!-- Logs if successful or not -->
+    ├ logger.ts  (logs if successful or not)
     ├ generateOptimizationId.ts
     └ result.ts   (optional Result<T, E> pattern)
 
     # Tiny shared helpers ONLY.
+
+
+   
+Optional Later Additions if Needed:
+   Domain Validation
+   LLM Call
