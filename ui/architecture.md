@@ -27,9 +27,7 @@ Build Solver Payload
 Send POST → OSRM/VROOM
 
 # Base File Structure
-src/
-│
-├ app/  
+├ ui/  
 │   # Next.js routes and UI.
 │   # Handles requests and responses ONLY.
 │   # No business logic here.
@@ -79,9 +77,7 @@ lib → assists
 
 
 # Detailed File Structure
-src/
-│
-├ app/
+├ ui/
 │   ├ api/
 │   │   └ optimize/
 │   │        route.ts

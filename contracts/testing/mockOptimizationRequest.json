@@ -1,0 +1,39 @@
+{
+  "vehicles": [
+    {
+      "id": "vehicle_1",
+      "startLocation": { "lat": 37.7749, "lng": -122.4194 },
+      "endLocation": { "lat": 37.7749, "lng": -122.4194 },
+      "capacity": {
+        "weight": 1200,
+        "volume": 15,
+        "units": 200
+      },
+      "maxRouteDuration": 36000
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "delivery_1",
+      "address": "201 Pine St, San Francisco, CA",
+      "location": { "lat": 37.7927, "lng": -122.3999 },
+      "serviceTime": 300,
+      "demand": {
+        "weight": 150,
+        "volume": 1.5,
+        "units": 10
+      }
+    },
+    {
+      "id": "delivery_2",
+      "address": "525 Market St, San Francisco, CA",
+      "location": { "lat": 37.7898, "lng": -122.4008 },
+      "serviceTime": 420,
+      "demand": {
+        "weight": 300,
+        "volume": 2.2,
+        "units": 18
+      }
+    }
+  ]
+}
